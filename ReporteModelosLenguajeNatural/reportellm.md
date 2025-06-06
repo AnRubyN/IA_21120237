@@ -276,7 +276,9 @@ Para mí, lo más difícil del proyecto fue justamente eso: usar una IA para ent
 **Nota1**: Se omitieron los chunks relevantes porque el video proporciona esta información.  
 **Nota2**:Los videos se encuentran a continuación, ya que eran demasiado pesados:  
 [Eutanasia_Video](https://itecm-my.sharepoint.com/:v:/g/personal/l21120237_morelia_tecnm_mx/EV11BhOijxdHo42wDocJ7tMBflGNPR-uy50hIOFD2VIgyA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=FX3Ier)  
-[Aborto_Video](https://itecm-my.sharepoint.com/:v:/g/personal/l21120237_morelia_tecnm_mx/EY1D04YJ4ydEqKED5C-uXp4Bf_Mbvlc26jfBIFMsSirz3g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mcz6LB)
+[Aborto_Video](https://itecm-my.sharepoint.com/:v:/g/personal/l21120237_morelia_tecnm_mx/EY1D04YJ4ydEqKED5C-uXp4Bf_Mbvlc26jfBIFMsSirz3g?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=mcz6LB)  
 
+**Nota3**: El codigo de los modelos era my pesaso, lo subi a OneDrive:
+[CodigosDeLosModelos](https://itecm-my.sharepoint.com/:u:/g/personal/l21120237_morelia_tecnm_mx/EQtftENHa5RAl_XTbbIWRqkBggpe3-1mmwtcKxhCsqe7gQ?e=0NPa3Y)
  
 
