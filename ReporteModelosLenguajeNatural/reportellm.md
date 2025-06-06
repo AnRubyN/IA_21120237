@@ -48,10 +48,10 @@ Este script se encarga de leer los documentos PDF almacenados en la carpeta `doc
 * **Proceso:** Itera sobre todos los archivos `.pdf` en la ruta especificada, extrae el texto de cada página y lo guarda en un nuevo archivo `.txt` en la carpeta `textos_extraidos`.
 * **Rutas de Carpeta:** `ruta_carpeta_pdfs` y `ruta_carpeta_textos`.
 
-![Configuración de Rutas de Archivo](evidencia\1.png)
+![Configuración de Rutas de Archivo](evidencia/1.png)
     *Figura 1: Configuración de Rutas de Archivo .*
 
-![Configuración de Rutas de Archivo](evidencia\2.png)
+![Configuración de Rutas de Archivo](evidencia/2.png)
     *Figura 2: El código Python extrae texto de PDFs con PyPDF2, almacenándolo en archivos .txt en un directorio específico (/textos_extraidos), e incluye manejo de errores. .*
 
 ### 2.3 Chunking y Preparación de Datos (`chunk_textos.py`)
@@ -64,16 +64,16 @@ Una vez extraídos los textos, este script los procesa para dividirlos en "chunk
     * Si un párrafo es muy largo, utiliza `spaCy` para dividirlo en oraciones y agrupa oraciones para formar chunks que respeten el tamaño máximo.
     * Los chunks se guardan en un archivo `chunks_para_embeddings.json`, manteniendo el texto del chunk y su archivo de origen (`source_file`).
 
-![Configuración de Rutas de Archivo](evidencia\3.png)
+![Configuración de Rutas de Archivo](evidencia/3.png)
     *Figura 3: Establece la ruta a la carpeta de textos extraídos (ruta_carpeta_textos_extraidos) y define el tamaño aproximado máximo y mínimo de palabras por chunk (MAX_PALABRAS_POR_CHUNK_APROX y MIN_PALABRAS_POR_CHUNK_APROX).o .*
 
-![Configuración de Rutas de Archivo](evidencia\4.png)
+![Configuración de Rutas de Archivo](evidencia/4.png)
     *Figura 4: Recorre los archivos .txt en el directorio de textos extraídos. .*
 
-![Configuración de Rutas de Archivo](evidencia\5.png)
+![Configuración de Rutas de Archivo](evidencia/5.png)
     *Figura 5: La estrategia de chunking inicial divide el texto en parrafos_texto. Luego, itera sobre cada texto_parrafo, calculando palabras_parrafo. Si el párrafo cumple con MAX_PALABRAS_POR_CHUNK_APROX y MIN_PALABRAS_POR_CHUNK_APROX, se añade a chunks_del_archivo_actual. Si un párrafo pequeño puede ser concatenado a un chunk anterior (ubicado en chunks_del_archivo_actual[-1]), se realiza esa acción. En caso de que un párrafo exceda MAX_PALABRAS_POR_CHUNK_APROX, el código indica que se procesará con el modelo de spaCy (nlp_es) para obtener oraciones y formar chunks más pequeños que respeten los límites de palabras.*
 
-![Configuración de Rutas de Archivo](evidencia\6.png)
+![Configuración de Rutas de Archivo](evidencia/6.png)
     *Figura 6: si lista_global_de_chunks no está vacía, guarda estos chunks en un archivo JSON llamado "chunks_para_embeddings.json" (definido en ruta_archivo_chunks_json) utilizando json.dump, asegurando una codificación utf-8 y un formato legible. Finalmente, notifica la ruta donde se guardaron los chunks o, si lista_global_de_chunks está vacía, informa que no se generaron chunks. .*
 
 ### 2.4 Generación de Embeddings (`generar_embeddings.py`)
@@ -83,16 +83,16 @@ Este script toma los chunks generados y los convierte en representaciones vector
 * **Herramienta Principal:** `sentence_transformers`.
 * **Proceso:** Carga los textos de los chunks desde `chunks_para_embeddings.json`, los codifica utilizando el modelo de Sentence Transformer seleccionado, y guarda la matriz de embeddings en un archivo `embeddings.npy`. El orden de los embeddings en este archivo corresponde al orden de los chunks en el JSON.
 
-![Concepto de Embeddings](evidencia\7.png)
+![Concepto de Embeddings](evidencia/7.png)
 *Figura 7: Esta sección define los nombres de los archivos de entrada y salida, así como el modelo de SentenceTransformer a utilizar, que es crucial para la calidad de los embeddings.*
 
-![Concepto de Embeddings](evidencia\8.png)
+![Concepto de Embeddings](evidencia/8.png)
 *Figura 8: El script primero carga los chunks preprocesados desde el archivo JSON, extrayendo únicamente el texto que será convertido en embeddings.*
 
-![Concepto de Embeddings](evidencia\9.png)
+![Concepto de Embeddings](evidencia/9.png)
 *Figura 9: Aquí es donde se instancia el SentenceTransformer y se utiliza para codificar los textos de los chunks en sus respectivas representaciones vectoriales.*
 
-![Concepto de Embeddings](evidencia\10.png)
+![Concepto de Embeddings](evidencia/10.png)
 *Figura 10: Aquí es donde se instancia el SentenceTransformer y se utiliza para codificar los textos de los chunks en sus respectivas representaciones vectoriales.*
 
 ### 2.5 Sistema de Chat RAG (`chatear_con_rag.py`)
@@ -108,13 +108,13 @@ Este es el componente central del chatbot que permite la interacción con el usu
     6.  Construye un prompt para el LLM de Ollama, incorporando la pregunta del usuario y el texto de los chunks relevantes como contexto.
     7.  Envía el prompt a Ollama y transmite la respuesta generada por el LLM al usuario.
 
-![Flujo de Interacción del Chat RAG](evidencia\11.png)
+![Flujo de Interacción del Chat RAG](evidencia/11.png)
 *Figura 11: Esta sección define las configuraciones principales del sistema, incluyendo los archivos de datos y los modelos de PLN y LLM a utilizar, así como la carga inicial de los mismos.*
 
-![Flujo de Interacción del Chat RAG](evidencia\12.png)
+![Flujo de Interacción del Chat RAG](evidencia/12.png)
 *Figura 12: Estas funciones son esenciales para el componente "Retrieval" (Recuperación) del RAG, permitiendo encontrar los fragmentos de texto más pertinentes a la consulta del usuario.*
 
-![Flujo de Interacción del Chat RAG](evidencia\13.png)
+![Flujo de Interacción del Chat RAG](evidencia/13.png)
 *Figura 13: Esta es la parte "Augmented Generation" (Generación Aumentada) del RAG, donde la pregunta del usuario y los chunks recuperados se combinan para formar un prompt que se envía al LLM para obtener una respuesta contextualizada.*
 
 ---
@@ -147,37 +147,37 @@ Esto evidencia que el sistema RAG fue capaz de navegar y presentar información 
 **Ejemplos de interacción:**
 
 * **Usuario:** "¿Tiene una persona el derecho exclusivo a decidir sobre su cuerpo cuando hay otra vida en desarrollo?"  
-  **Respuesta del LLM:** ![Respuesta LLM - Autonomía Personal](evidencia\qa1.jpg)
+  **Respuesta del LLM:** ![Respuesta LLM - Autonomía Personal](evidencia/qa1.jpg)
 
 * **Usuario:** "¿Hasta qué punto el lenguaje utilizado (“interrupción” vs. “terminación”) influye en la percepción ética del aborto?"
-  **Respuesta del LLM:** ![Respuesta LLM - Lenguaje Aborto](evidencia\qa2.jpg)
+  **Respuesta del LLM:** ![Respuesta LLM - Lenguaje Aborto](evidencia/qa2.jpg)
 
 * **Usuario:** "¿Qué principios éticos (utilitarismo, deontología, ética del cuidado) pueden respaldar o rechazar el aborto inducido?"  
-**Respuesta del LLM:** ![Respuesta LLM - Principios Éticos](evidencia\qa3.jpg)
+**Respuesta del LLM:** ![Respuesta LLM - Principios Éticos](evidencia/qa3.jpg)
 * **Usuario:** "¿Puede una inteligencia artificial participar de forma ética en decisiones sobre aborto?"
- **Respuesta del LLM:** ![Respuesta LLM - IA y Aborto](evidencia\qa4.jpg)
+ **Respuesta del LLM:** ![Respuesta LLM - IA y Aborto](evidencia/qa4.jpg)
 
 * **Usuario:** "¿Qué riesgos éticos implica delegar información médica sensible a sistemas automatizados?"  
-  **Respuesta del LLM:** ![Respuesta LLM - Riesgos IA Médica](evidencia\qa5.jpg)
+  **Respuesta del LLM:** ![Respuesta LLM - Riesgos IA Médica](evidencia/qa5.jpg)
 
 **Debate con la IA:**
 * **Usuario (Argumento Propio):** "El aborto es una decisión fundamental para la autonomía de la mujer, ya que le permite controlar su propio cuerpo y futuro, lo cual es un derecho inalienable. Sin embargo, al mismo tiempo, el aborto también interrumpe una vida potencial, lo que plantea serias dudas éticas sobre el valor de la vida desde la concepción."  
-**Respuesta del LLM:** ![Respuesta LLM - Argumento Propio Autonomía vs Vida Potencial](evidencia\apa1.png)
+**Respuesta del LLM:** ![Respuesta LLM - Argumento Propio Autonomía vs Vida Potencial](evidencia/apa1.png)
 
 * **Usuario (Argumento Propio):** "Si la autonomía de la mujer es un 'derecho inalienable', como afirmas, por definición no puede ser equilibrado o supeditado a una 'vida potencial'. Un derecho inalienable significa que no se puede quitar o ceder; por lo tanto, no hay una verdadera contradicción, sino una jerarquía donde el derecho fundamental de la persona prevalece."
   
-  **Respuesta del LLM:** ![Respuesta LLM - Autonomía Inalienable vs Vida Potencial](evidencia\apa2.png)
+  **Respuesta del LLM:** ![Respuesta LLM - Autonomía Inalienable vs Vida Potencial](evidencia/apa2.png)
  
 * **Usuario (Argumento Propio):** "Tu argumento extiende un 'derecho inalienable' de Locke y Kant a la autonomía reproductiva de forma no explícita y absoluta. Los derechos, incluso los fundamentales, no operan en un vacío. Las sociedades siempre buscan equilibrar derechos, y la existencia de un debate global tan profundo sobre el aborto demuestra que la 'vida potencial' no es una consideración que simplemente se anula. Afirmar una supremacía absoluta ignora la complejidad ética y legal real."
-**Respuesta del LLM:** ![Respuesta LLM - Debate de Derechos y Vida Potencial](evidencia\apa3.png)
+**Respuesta del LLM:** ![Respuesta LLM - Debate de Derechos y Vida Potencial](evidencia/apa3.png)
 
 * **Usuario (Argumento Propio):** "Tu argumento del 'equilibrio' contradice tu propia referencia a un 'derecho inalienable'. Si algo es inalienable, no se 'equilibra' con otros factores; prevalece. Reducir la autonomía a un simple punto en una balanza diluye su protección fundamental."
   
-  **Respuesta del LLM:** ![Respuesta LLM - Contradicción Inalienable vs Equilibrio](evidencia\apa4.png)
+  **Respuesta del LLM:** ![Respuesta LLM - Contradicción Inalienable vs Equilibrio](evidencia/apa4.png)
   
 * **Usuario (Argumento Propio):** "Tu insistencia en un 'marco justificado y equilibrado' para un derecho inalienable revela una postura. Implícitamente, estás diciendo que la autonomía de la mujer, aunque reconocida, está sujeta a condiciones y límites sociales, lo que contradice la idea de un derecho fundamental absoluto."
   
-  **Respuesta del LLM:** ![Respuesta LLM - Marco Justificado y Equilibrado](evidencia\apa5.png)
+  **Respuesta del LLM:** ![Respuesta LLM - Marco Justificado y Equilibrado](evidencia/apa5.png)
 
 **Conclusiones del debate IA VS HUMANO:**  
 
@@ -216,39 +216,39 @@ Esta capacidad de la IA para presentar un panorama completo y objetivo, incluso 
 
 * **Usuario:** "¿Es éticamente válido que una persona decida poner fin a su vida en situaciones de sufrimiento irreversible?"
 
-    **Respuesta del LLM:** ![Respuesta LLM - Eutanasia Sufrimiento Irreversible](evidencia\qe1.jpg)
+    **Respuesta del LLM:** ![Respuesta LLM - Eutanasia Sufrimiento Irreversible](evidencia/qe1.jpg)
 
 * **Usuario:** "¿Cuál es la diferencia entre eutanasia activa, pasiva y el suicidio asistido? ¿Importa éticamente?"
 
-    **Respuesta del LLM:** ![Respuesta LLM - Eutanasia Activa Pasiva Suicidio Asistido](evidencia\qe2.jpg)
+    **Respuesta del LLM:** ![Respuesta LLM - Eutanasia Activa Pasiva Suicidio Asistido](evidencia/qe2.jpg)
 
 * **Usuario:** "¿Qué papel podrían (o no deberían) tener los sistemas de inteligencia artificial en este tipo de decisiones?"
 
-    **Respuesta del LLM:** ![Respuesta LLM - Papel IA en Eutanasia](evidencia\qe3.png)
+    **Respuesta del LLM:** ![Respuesta LLM - Papel IA en Eutanasia](evidencia/qe3.png)
 
 * **Usuario:** "¿Qué sucede cuando el deseo de morir entra en conflicto con creencias religiosas, leyes o protocolos médicos?"
 
-  **Respuesta del LLM:** ![Respuesta LLM - Conflicto Deseo Morir](evidencia\qe4.jpg)
+  **Respuesta del LLM:** ![Respuesta LLM - Conflicto Deseo Morir](evidencia/qe4.jpg)
 
 * **Usuario:** "¿Se puede hablar de una “muerte digna” sin considerar el contexto emocional y humano?"
 
-  **Respuesta del LLM:** ![Respuesta LLM - Muerte Digna Contexto Emocional](evidencia\qe5.png)
+  **Respuesta del LLM:** ![Respuesta LLM - Muerte Digna Contexto Emocional](evidencia/qe5.png)
 
 **Debate con la IA:**
 
 * **Usuario (Argumento Propio):** "La eutanasia ya es compleja, pero la inteligencia artificial añade una capa más. Si la IA puede predecir el sufrimiento, ¿hasta qué punto su 'objetividad' influye en nuestra idea de dignidad humana al final de la vida? ¿Le estamos permitiendo a la IA definir cuándo una vida es 'digna' de seguir o de terminar? Este es el dilema."
-  **Respuesta del LLM:** ![Respuesta LLM - IA y Dignidad Humana en Eutanasia](evidencia\ape1.png)  
+  **Respuesta del LLM:** ![Respuesta LLM - IA y Dignidad Humana en Eutanasia](evidencia/ape1.png)  
 
     
 * **Usuario (Argumento Propio):** "Tu postura dice que la IA solo 'asiste', pero al predecir la 'calidad de vida' en la eutanasia, su supuesta 'objetividad' moldea sutilmente la percepción de dignidad. Esto va más allá de la asistencia, difuminando peligrosamente la línea entre informar y dirigir una decisión tan personal."  
-  **Respuesta del LLM:** ![Respuesta LLM - IA y Percepción de Dignidad](evidencia\ape2.png)
+  **Respuesta del LLM:** ![Respuesta LLM - IA y Percepción de Dignidad](evidencia/ape2.png)
     
 * **Usuario (Argumento Propio):** "Tu argumento de que la IA solo 'informa' esconde su poder. Al 'evaluar preferencias' y ofrecer una 'perspectiva ponderada', la IA moldea la decisión. En la vulnerabilidad, la 'información objetiva' se vuelve una dirección implícita, borrando la línea entre asistir y decidir."
-  **Respuesta del LLM:** ![Respuesta LLM - IA Evalúa Preferencias](evidencia\ape3.png)
+  **Respuesta del LLM:** ![Respuesta LLM - IA Evalúa Preferencias](evidencia/ape3.png)
 
 * **Usuario (Argumento Propio):** "Tu insistencia en el 'equilibrio' de derechos y la 'transparencia' de la IA revela implícitamente una postura: la autonomía individual es negociable y condicionada. Al validar que la IA 'evalúe preferencias' o 'informe', admites que la tecnología puede moldear —y limitar— la dignidad humana sin plena transparencia o posibilidad de rebatirla."
 
-  **Respuesta del LLM:** ![Respuesta LLM - Equilibrio y Transparencia](evidencia\ape4.png)
+  **Respuesta del LLM:** ![Respuesta LLM - Equilibrio y Transparencia](evidencia/ape4.png)
   
   
 **Conclusiones del debate IA VS HUMANO:** 
