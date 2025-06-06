@@ -1,0 +1,12 @@
+Resumen
+Crear el entorno: python -m venv mi_entorno.
+
+//Activarlo:
+Windows: mi_entorno\Scripts\activate
+Linux/macOS: source mi_entorno/bin/activate
+
+//Instalar OpenCV-contrib: 
+pip install opencv-contrib-python.
+
+//correr archivos desde la consola
+python test_opencv.py
