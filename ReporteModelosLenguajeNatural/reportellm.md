@@ -4,7 +4,7 @@
 **Autor:** Ana Ruby Nava López  
 **N° Control:** 21120237   
 **Fecha:** 5 de junio de 2025  
-**Materia:**
+**Materia:** IA
 #
 
 ## Conceptos Clave
